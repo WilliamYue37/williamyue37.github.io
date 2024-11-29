@@ -2,256 +2,378 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>William Yue</title>
-
     <meta name="author" content="William Yue">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        display: flex;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        background-color: #f2f2f2;
+        border-right: 1px solid #ccc;
+        padding-top: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar a {
+        display: block;
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .sidebar a:hover {
+        background-color: #ddd;
+      }
+      .sidebar a.active {
+        background-color: #007acc;
+        color: white;
+        cursor: default;
+      }
+
+      /* Content Styles */
+      .content {
+        margin-left: 220px;
+        padding: 20px;
+        width: calc(100% - 220px);
+      }
+
+      /* Section Styles */
+      section {
+        margin-bottom: 50px;
+        padding-top: 50px; /* For smooth scrolling offset */
+      }
+
+      h2 {
+        border-bottom: 2px solid #007acc;
+        padding-bottom: 5px;
+      }
+    </style>
+    <!-- Script below for highlighting the current section tab does NOT work :( -->
+    <script>
+      // Highlight the current section in the sidebar
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section");
+        const sidebarLinks = document.querySelectorAll(".sidebar a");
+        const offset = window.innerHeight / 3; // Adjust for section entry point
+        let currentSection = null;
+
+        // Determine the current section
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - offset;
+          const sectionBottom = section.offsetTop + section.offsetHeight - offset;
+          if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+
+        // Update the sidebar links
+        sidebarLinks.forEach((link) => {
+          const targetId = link.getAttribute("href").slice(1); // Remove the '#' to get the id
+          if (currentSection === targetId) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      });
+    </script>
   </head>
 
   <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  William Yue
-                </p>
-                <p> I am a final year undergraduate student at the University of Texas at Austin, advised by <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>. I am part of the <a href="https://www.cs.utexas.edu/turing-scholars">Turing Scholars</a> honors program, pursuing a dual major in Computer Science and Mathematics.
-                </p>
-                <p style="text-align:center">
-                  <a href="mailto:william.yue@utexas.edu">Email</a> &nbsp;/&nbsp;
-                  <a href="data/CV.pdf">CV</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/citations?user=dypzPtUAAAAJ&hl=en&authuser=1">Scholar</a> &nbsp;/&nbsp;
-                  <a href="https://twitter.com/williamhyue">Twitter</a> &nbsp;/&nbsp;
-                  <a href="https://github.com/WilliamYue37">Github</a>
-                </p>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <a href="#bio">Biography</a>
+      <a href="#research">Research</a>
+      <a href="#robot-videos">Robot Videos</a>
+    </div>
+    
+    <!-- Main Section -->
+    <table id="bio" style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+      <tbody>
+        <tr style="padding:0px">
+          <td style="padding:0px">
+
+            <!-- Biography -->
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr style="padding:0px">
+                  <td style="padding:2.5%;width:63%;vertical-align:middle">
+                    <p class="name" style="text-align: center;">
+                      William Yue
+                    </p>
+                    <p> I am a final year undergraduate student at the University of Texas at Austin, advised by <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>. I am part of the <a href="https://www.cs.utexas.edu/turing-scholars">Turing Scholars</a> honors program, pursuing a dual major in Computer Science and Mathematics.
+                    </p>
+                    <p style="text-align:center">
+                      <a href="mailto:william.yue@utexas.edu">Email</a> &nbsp;/&nbsp;
+                      <a href="data/CV.pdf">CV</a> &nbsp;/&nbsp;
+                      <a href="https://scholar.google.com/citations?user=dypzPtUAAAAJ&hl=en&authuser=1">Scholar</a> &nbsp;/&nbsp;
+                      <a href="https://twitter.com/williamhyue">Twitter</a> &nbsp;/&nbsp;
+                      <a href="https://github.com/WilliamYue37">Github</a>
+                    </p>
+                  </td>
+                  <td style="padding:2.5%;width:40%;max-width:40%">
+                    <a href="images/WilliamYue.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/WilliamYue.jpg" class="hoverZoomLink"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+
+            <!-- Research Section -->
+            <table id="research" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr>
+                  <td style="padding:20px;width:100%;vertical-align:middle">
+                    <h2>Research</h2>
+                    <p>
+                      I'm interested in machine learning, decision making, and robotics.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Research Content -->
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <img src='images/AttentionTuner.png' width=100%>
               </td>
-              <td style="padding:2.5%;width:40%;max-width:40%">
-                <a href="images/WilliamYue.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/WilliamYue.jpg" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="https://arxiv.org/pdf/2411.07954v1">
+                  <span class="papertitle">Learning Memory Mechanisms for Decision Making through Demonstrations</span>
+                </a>
+                <br>
+                <strong>William Yue</strong>,
+                <a href="https://cranial-xix.github.io/">Bo Liu</a>,
+                <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>
+                <br>
+                Under Review
+                <br>
+                <a href="https://arxiv.org/abs/2411.07954v1">arXiv</a>
+                /
+                <a href="https://github.com/WilliamYue37/AttentionTuner">code</a>
+                <p></p>
                 <p>
-                  I'm interested in machine learning, decision making, and robotics.
+                A framework for learning memory mechanisms for decision making through demonstrations.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <img src='images/tdgr.png' width=100%>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="https://arxiv.org/pdf/2401.02576v2.pdf">
+                  <span class="papertitle">t-DGR: A Trajectory-Based Deep Generative Replay Method for Continual Learning in Decision Making</span>
+                </a>
+                <br>
+                <strong>William Yue</strong>,
+                <a href="https://cranial-xix.github.io/">Bo Liu</a>,
+                <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>
+                <br>
+                <em>COLLA</em>, 2024
+                <br>
+                <em>AAMAS Extended Abstract</em>, 2024
+                <br>
+                <em>NeurIPS ALOE Workshop</em>, 2023
+                <br>
+                <a href="project_pages/t-dgr/index.html">project page</a>
+                /
+                <a href="https://arxiv.org/abs/2401.02576v2">arXiv</a>
+                /
+                <a href="https://github.com/WilliamYue37/t-DGR">code</a>
+                <p></p>
+                <p>
+                A deep generative replay method that generates samples by conditioning on the trajectory timestep.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <img src='images/FastRecomb.png' width=100%>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="https://genome.cshlp.org/content/early/2023/06/22/gr.277676.123.full.pdf+html">
+                  <span class="papertitle">Fast inference of genetic recombination rates in biobank scale data</span>
+                </a>
+                <br>
+                <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri</a>,
+                <strong>William Yue</strong>,
+                <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
+                <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
+                <br>
+                <em>Genome Research</em>, 2023
+                <br>
+                <em>RECOMB</em>, 2023
+                <br>
+                <em>ASHG</em>, 2021 &nbsp <font color="red"><strong>(Reviewers' Choice Award)</strong></font>
+                <br>
+                <a href="https://www.biorxiv.org/content/10.1101/2023.01.09.523304v1.abstract">bioRXiv</a>
+                /
+                <a href="https://github.com/ZhiGroup/FastRecomb">code</a>
+                <p></p>
+                <p>
+                An efficient tool to infer recombination rates using a biobank-scale haplotype panel.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <img src='images/Psmoother.png' width=100%>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="https://academic.oup.com/bioinformaticsadvances/article/2/1/vbac045/6611715">
+                  <span class="papertitle">P-smoother: efficient PBWT smoothing of large haplotype panels</span>
+                </a>
+                <br>
+                <strong>William Yue*</strong>,
+                <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri*</a>,
+                <a href="https://dubai03nsr.github.io/">Victor Wang</a>,
+                <a href="https://www.linkedin.com/in/pramesh-shakya-4a4b90150/">Pramesh Shakya</a>,
+                <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
+                <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
+                <br>
+                <em>Bioinformatics Advances</em>, 2022
+                <br>
+                <a href="https://github.com/ZhiGroup/P-smoother">code</a>
+                <p></p>
+                <p>
+                An efficient method to correct recent mutations and genotyping errors in biobank-scale haplotype panels.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <img src='images/biPBWT.png' width=100%>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="https://drops.dagstuhl.de/storage/00lipics/lipics-vol201-wabi2021/LIPIcs.WABI.2021.19/LIPIcs.WABI.2021.19.pdf">
+                  <span class="papertitle">Efficient Haplotype Block Matching in Bi-Directional PBWT</span>
+                </a>
+                <br>
+                <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri*</a>,
+                <strong>William Yue*</strong>,
+                <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
+                <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
+                <br>
+                <em>WABI</em>, 2021
+                <br>
+                <a href="https://github.com/ZhiGroup/bi-PBWT">code</a>
+                <p></p>
+                <p>
+                An efficient method to find blocks of matches around each variant site and study the changes of matching blocks using forward and reverse PBWT.
                 </p>
               </td>
             </tr>
           </tbody></table>
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle">
-        <img src='images/AttentionTuner.png' width=100%>
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        <a href="https://arxiv.org/pdf/2411.07954v1">
-          <span class="papertitle">Learning Memory Mechanisms for Decision Making through Demonstrations</span>
-        </a>
-        <br>
-        <strong>William Yue</strong>,
-        <a href="https://cranial-xix.github.io/">Bo Liu</a>,
-        <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>
-        <br>
-        Under Review
-        <br>
-        <a href="https://arxiv.org/abs/2411.07954v1">arXiv</a>
-        /
-        <a href="https://github.com/WilliamYue37/AttentionTuner">code</a>
-        <p></p>
-        <p>
-        A framework for learning memory mechanisms for decision making through demonstrations.
-        </p>
-      </td>
-    </tr>
+          <!-- Robot Videos Section -->
+          <table id="robot-videos" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <h2>Robot Videos</h2>
+                  <p>Here are videos of some of the robots I've worked with.</p>
+                </td>
+              </tr>
 
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle">
-        <img src='images/tdgr.png' width=100%>
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        <a href="https://arxiv.org/pdf/2401.02576v2.pdf">
-          <span class="papertitle">t-DGR: A Trajectory-Based Deep Generative Replay Method for Continual Learning in Decision Making</span>
-        </a>
-        <br>
-        <strong>William Yue</strong>,
-        <a href="https://cranial-xix.github.io/">Bo Liu</a>,
-        <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>
-        <br>
-        <em>COLLA</em>, 2024
-        <br>
-        <em>AAMAS Extended Abstract</em>, 2024
-        <br>
-        <em>NeurIPS ALOE Workshop</em>, 2023
-        <br>
-        <a href="project_pages/t-dgr/index.html">project page</a>
-        /
-        <a href="https://arxiv.org/abs/2401.02576v2">arXiv</a>
-        /
-        <a href="https://github.com/WilliamYue37/t-DGR">code</a>
-        <p></p>
-        <p>
-        A deep generative replay method that generates samples by conditioning on the trajectory timestep.
-        </p>
-      </td>
-    </tr>
+              <!-- Fourier GR1 Video -->
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <div style="text-align:center;">
+                    <h3>Fourier GR1</h3>
+                    <iframe 
+                      width="560" 
+                      height="315" 
+                      src="https://www.youtube.com/embed/UNRQrfyEdQo?si=T4w_7S_-Xfps_rWd" 
+                      title="Fourier GR1 in Action" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerpolicy="strict-origin-when-cross-origin" 
+                      allowfullscreen>
+                    </iframe>
+                    <p>A humanoid robot pouring wine into a cup.</p>
+                  </div>
+                </td>
+              </tr>
 
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle">
-        <img src='images/FastRecomb.png' width=100%>
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        <a href="https://genome.cshlp.org/content/early/2023/06/22/gr.277676.123.full.pdf+html">
-          <span class="papertitle">Fast inference of genetic recombination rates in biobank scale data</span>
-        </a>
-        <br>
-        <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri</a>,
-        <strong>William Yue</strong>,
-        <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
-        <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
-        <br>
-        <em>Genome Research</em>, 2023
-        <br>
-        <em>RECOMB</em>, 2023
-        <br>
-        <em>ASHG</em>, 2021 &nbsp <font color="red"><strong>(Reviewers' Choice Award)</strong></font>
-        <br>
-        <a href="https://www.biorxiv.org/content/10.1101/2023.01.09.523304v1.abstract">bioRXiv</a>
-        /
-        <a href="https://github.com/ZhiGroup/FastRecomb">code</a>
-        <p></p>
-        <p>
-        An efficient tool to infer recombination rates using a biobank-scale haplotype panel.
-        </p>
-      </td>
-    </tr>
+              <!-- Jackal UGV Video -->
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <div style="text-align:center;">
+                    <h3>Jackal UGV</h3>
+                    <iframe 
+                      width="560" 
+                      height="315" 
+                      src="https://www.youtube.com/embed/ai0uH3Z0th0?si=Ypk1mIVk_ZOzclH2" 
+                      title="Jackal UGV Navigation" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerpolicy="strict-origin-when-cross-origin" 
+                      allowfullscreen>
+                    </iframe>
+                    <p>Autonomous Jackal UGV Uses Elevator in UT's Gates-Dell Complex.</p>
+                  </div>
+                </td>
+              </tr>
 
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle">
-        <img src='images/Psmoother.png' width=100%>
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        <a href="https://academic.oup.com/bioinformaticsadvances/article/2/1/vbac045/6611715">
-          <span class="papertitle">P-smoother: efficient PBWT smoothing of large haplotype panels</span>
-        </a>
-        <br>
-        <strong>William Yue*</strong>,
-        <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri*</a>,
-        <a href="https://dubai03nsr.github.io/">Victor Wang</a>,
-        <a href="https://www.linkedin.com/in/pramesh-shakya-4a4b90150/">Pramesh Shakya</a>,
-        <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
-        <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
-        <br>
-        <em>Bioinformatics Advances</em>, 2022
-        <br>
-        <a href="https://github.com/ZhiGroup/P-smoother">code</a>
-        <p></p>
-        <p>
-        An efficient method to correct recent mutations and genotyping errors in biobank-scale haplotype panels.
-        </p>
-      </td>
-    </tr>
+              <!-- F1/10 Car Video -->
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <div style="text-align:center;">
+                    <h3>F1/10 Car</h3>
+                    <iframe 
+                      width="560" 
+                      height="315" 
+                      src="https://www.youtube.com/embed/VccOsyDxGgw?feature=shared" 
+                      title="F1/10 Car Demonstration" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerpolicy="strict-origin-when-cross-origin" 
+                      allowfullscreen>
+                    </iframe>
+                    <p>An autonomous driving algorithm using particle filters for localization and both global and local planners.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle">
-        <img src='images/biPBWT.png' width=100%>
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        <a href="https://drops.dagstuhl.de/storage/00lipics/lipics-vol201-wabi2021/LIPIcs.WABI.2021.19/LIPIcs.WABI.2021.19.pdf">
-          <span class="papertitle">Efficient Haplotype Block Matching in Bi-Directional PBWT</span>
-        </a>
-        <br>
-        <a href="https://sbmi.uth.edu/faculty-and-staff/ardalan-naseri.htm">Ardalan Naseri*</a>,
-        <strong>William Yue*</strong>,
-        <a href="https://www.cs.ucf.edu/~shzhang/">Shaojie Zhang</a>,
-        <a href="https://sbmi.uth.edu/faculty-and-staff/degui-zhi.htm">Degui Zhi</a>
-        <br>
-        <em>WABI</em>, 2021
-        <br>
-        <a href="https://github.com/ZhiGroup/bi-PBWT">code</a>
-        <p></p>
-        <p>
-        An efficient method to find blocks of matches around each variant site and study the changes of matching blocks using forward and reverse PBWT.
-        </p>
-      </td>
-    </tr>
-  </tbody></table>
 
-    <!-- Robot Videos Section -->
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-      <tbody>
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <h2>Robot Videos</h2>
-            <p>Here are videos of some of the robots I've worked with.</p>
-          </td>
-        </tr>
-
-        <!-- Videos -->
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <div style="text-align:center;">
-              <h2>Fourier GR1</h2>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/UNRQrfyEdQo?si=T4w_7S_-Xfps_rWd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <div style="text-align:center;">
-              <h2>Jackal UGV</h2>
-              <iframe
-                src="https://www.youtube.com/embed/ai0uH3Z0th0?si=Ypk1mIVk_ZOzclH2"
-                title="YouTube video player"
-                style="width:80%; height:auto; aspect-ratio:16/9; border:0;"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <div style="text-align:center;">
-              <h2>F1/10 Car</h2>
-              <iframe width="315" height="560"
-                src="https://youtube.com/embed/VccOsyDxGgw?feature=shared"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
-            </div>
+            <!-- Credits -->
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:0;padding:0;">
+              <tbody>
+                <tr>
+                  <td style="padding:0;margin:0;text-align:right;">
+                    <p style="margin:0;padding:0;">
+                      Website design is taken from <a href="https://github.com/jonbarron/j...">
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </td>
         </tr>
       </tbody>
     </table>
-
-
-    <!-- Credits -->
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:0;padding:0;">
-      <tbody>
-        <tr>
-          <td style="padding:0;margin:0;text-align:right;">
-            <p style="margin:0;padding:0;">
-              Website design is taken from <a href="https://github.com/jonbarron/jonbarron_website">here</a>.
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
   </body>
 </html>
